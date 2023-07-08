@@ -1,0 +1,33 @@
+
+const items = [
+    { name: 'Vincent van Gogh', type: 'Painting', concept: 'Starry Night' },
+    { name: 'Leonardo da Vinci', type: 'Drawing', concept: 'Mona Lisa' },
+    { name: 'Pablo Picasso', type: 'Sculpture', concept: 'Guernica' }
+  ];
+  
+  function search() {
+    const searchInput = document.querySelector('.form-control').value.toLowerCase();
+    const searchResults = document.getElementById('searchResults');
+    searchResults.innerHTML = '';
+    
+    if (searchInput.length < 3) {
+      searchResults.style.display = 'none';
+      return;
+    }
+    
+    items.forEach(item => {
+      if (item.name.toLowerCase().includes(searchInput) || item.type.toLowerCase().includes(searchInput) || item.concept.toLowerCase().includes(searchInput)) {
+        const li = document.createElement('li');
+        li.textContent = item.name;
+        searchResults.appendChild(li);
+        searchResults.style.display = 'block';
+      }
+    });
+  }
+  
+  document.addEventListener('click', function(e) {
+    if (!e.target.matches('#searchResults li')) {
+      document.getElementById('searchResults').style.display = 'none';
+    }
+  });
+  
