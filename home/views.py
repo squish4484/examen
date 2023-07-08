@@ -1,4 +1,9 @@
 from django.shortcuts import render
+from products.models import Product
 
-def homeView(request):
-    return render(request, 'home/index.html')
+
+
+def index(request):
+
+    context = {'products' : Product.objects.all()}
+    return render(request , 'home/index.html' , context)
